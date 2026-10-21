@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArteMX | Ecosistema Digital del Arte en México</title>
+  <!-- Tailwind CSS CDN para un prototipado moderno y responsivo -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Playfair Display para estética editorial de galería -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              accent: '#c25e38',       // Terracota / Barro cálido
+              accentHover: '#a34a28',  // Terracota profundo
+              accentGold: '#b58d3d',   // Ocre dorado
+              bg: '#fbf9f5',           // Beige suave / Marfil cálido
+              bgAlt: '#f3efe6',        // Beige secundario para tarjetas/secciones
+              card: '#ffffff',         // Blanco cálido para tarjetas elevadas
+              cardBorder: '#e8e2d5',   // Borde neutro delicado
+              textMain: '#1c1a17',     // Carbón/Negro cálido para textos
+              textMuted: '#6e6a63'     // Marrón/Gris neutro atenuado
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-color: #fbf9f5;
+      color: #1c1a17;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .glass-nav {
+      background: rgba(251, 249, 245, 0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .hero-gradient {
+      background: radial-gradient(circle at 50% 30%, rgba(194, 94, 56, 0.08) 0%, rgba(251, 249, 245, 0) 70%);
+    }
+    .card-hover:hover {
+      box-shadow: 0 12px 30px -10px rgba(194, 94, 56, 0.12);
+      border-color: rgba(194, 94, 56, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-brand-accent selection:text-white">
+
+  <!-- ==================== 1. ENCABEZADO (HEADER) ==================== -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-brand-cardBorder transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Logo ArteMX -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center font-bold text-white text-lg shadow-sm group-hover:scale-105 transition-transform">
+          MX
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-tight text-brand-textMain leading-none">ArteMX</span>
+          <span class="text-[9px] tracking-widest text-brand-accent font-semibold uppercase mt-0.5">Ecosistema del Arte</span>
+        </div>
+      </a>
+
+      <!-- Barra de Búsqueda Integrada -->
+      <div class="hidden md:flex flex-1 max-w-md mx-6">
+        <div class="relative w-full">
+          <input 
+            type="text" 
+            placeholder="Buscar artistas, galerías, obras o producción..." 
+            class="w-full bg-brand-bgAlt text-sm text-brand-textMain placeholder-brand-textMuted rounded-full py-2.5 pl-10 pr-12 border border-brand-cardBorder focus:outline-none focus:border-brand-accent focus:bg-white transition-all"
+          >
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-textMuted">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </div>
+          <button 
+            aria-label="Buscar"
+            class="absolute inset-y-1 right-1 px-3 bg-brand-accent text-white rounded-full flex items-center justify-center hover:bg-brand-accentHover transition-colors"
+          >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navegación & Acciones -->
+      <nav class="flex items-center gap-5">
+        <a href="#caracteristicas" class="hidden lg:block text-sm font-medium text-brand-textMuted hover:text-brand-textMain transition-colors">Explorar</a>
+        <a href="#directorio" class="hidden lg:block text-sm font-medium text-brand-textMuted hover:text-brand-textMain transition-colors">Directorio</a>
+        <a href="#servicios" class="hidden lg:block text-sm font-medium text-brand-textMuted hover:text-brand-textMain transition-colors">Servicios</a>
+        
+        <div class="h-4 w-[1px] bg-brand-cardBorder hidden lg:block"></div>
+
+        <button class="hidden sm:flex items-center gap-2 text-sm font-medium text-brand-textMuted hover:text-brand-textMain px-3 py-2 rounded-full hover:bg-brand-bgAlt transition-colors">
+          <i data-lucide="user" class="w-4 h-4"></i>
+          <span>Ingresar</span>
+        </button>
+
+        <a href="#registro" class="bg-brand-textMain hover:bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm transform hover:-translate-y-0.5 active:translate-y-0">
+          Unirse a ArteMX
+        </a>
+      </nav>
+
+    </div>
+
+    <!-- Búsqueda Móvil -->
+    <div class="md:hidden px-4 pb-4">
+      <div class="relative w-full">
+        <input 
+          type="text" 
+          placeholder="Buscar obras, galerías o servicios..." 
+          class="w-full bg-brand-bgAlt text-sm text-brand-textMain placeholder-brand-textMuted rounded-full py-2 pl-9 pr-4 border border-brand-cardBorder focus:outline-none focus:border-brand-accent"
+        >
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-brand-textMuted">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==================== 2. SECCIÓN PRINCIPAL (HERO) ==================== -->
+  <section class="relative hero-gradient pt-16 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <!-- Tag Destacado -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-bgAlt border border-brand-cardBorder text-brand-accent text-xs sm:text-sm font-medium mb-8 shadow-sm">
+        <span class="flex h-2 w-2 rounded-full bg-brand-accent"></span>
+        Unificando la escena del arte en México
+      </div>
+
+      <!-- Titular Principal -->
+      <h1 class="font-playfair text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-brand-textMain max-w-5xl mx-auto leading-tight sm:leading-none">
+        El punto de encuentro entre el <span class="italic font-normal text-brand-accent">talento,</span> las galerías y la producción.
+      </h1>
+
+      <!-- Texto de Apoyo -->
+      <p class="mt-6 text-lg sm:text-xl text-brand-textMuted max-w-3xl mx-auto font-light leading-relaxed">
+        Reducimos la fragmentación del mercado del arte visual en México. Una sola plataforma editorial donde creadores emergentes y consolidados conectan con curadores, galerías y proveedores especializados en conservación, empaque y logística local.
+      </p>
+
+      <!-- Botones de Acción Hero -->
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#explorar" class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-4 rounded-full text-base font-medium shadow-md shadow-brand-accent/20 transition-all flex items-center justify-center gap-2 group">
+          <span>Explorar Catálogo & Red</span>
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="#servicios" class="w-full sm:w-auto bg-brand-card hover:bg-brand-bgAlt text-brand-textMain border border-brand-cardBorder px-8 py-4 rounded-full text-base font-medium transition-all flex items-center justify-center gap-2 shadow-sm">
+          <i data-lucide="truck" class="w-5 h-5 text-brand-accent"></i>
+          <span>Contratar Logística Local</span>
+        </a>
+      </div>
+
+      <!-- Métrica / Cifras Clave -->
+      <div class="mt-16 pt-10 border-t border-brand-cardBorder/80 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
+        <div>
+          <p class="font-playfair text-3xl sm:text-4xl font-bold text-brand-textMain">+1,200</p>
+          <p class="text-xs sm:text-sm text-brand-textMuted mt-1">Artistas Registrados</p>
+        </div>
+        <div>
+          <p class="font-playfair text-3xl sm:text-4xl font-bold text-brand-textMain">+85</p>
+          <p class="text-xs sm:text-sm text-brand-textMuted mt-1">Galerías & Colectivos</p>
+        </div>
+        <div>
+          <p class="font-playfair text-3xl sm:text-4xl font-bold text-brand-textMain">+350</p>
+          <p class="text-xs sm:text-sm text-brand-textMuted mt-1">Proveedores Técnicos</p>
+        </div>
+        <div>
+          <p class="font-playfair text-3xl sm:text-4xl font-bold text-brand-textMain">32</p>
+          <p class="text-xs sm:text-sm text-brand-textMuted mt-1">Estados de México</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 3. SECCIÓN DE CARACTERÍSTICAS (3 TARJETAS) ==================== -->
+  <section id="caracteristicas" class="py-20 bg-brand-bgAlt/50 relative border-t border-brand-cardBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">Solución Integral</h2>
+        <p class="font-playfair text-3xl sm:text-4xl font-bold text-brand-textMain">Tres pilares diseñados para impulsar el arte nacional</p>
+        <p class="mt-4 text-brand-textMuted text-base">Integración fluida para todos los eslabones de la cadena de valor del arte en México.</p>
+      </div>
+
+      <!-- Grid de 3 Tarjetas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Tarjeta 1: Descubrimiento de Artistas -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 card-hover relative group shadow-sm">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-bgAlt border border-brand-cardBorder flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="palette" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">Artistas Visuales</span>
+            <h3 class="font-playfair text-2xl font-bold text-brand-textMain mt-2 mb-3">Descubrimiento de Talento</h3>
+            <p class="text-brand-textMuted text-sm leading-relaxed mb-6">
+              Portafolios curados para artistas emergentes y consolidados. Espacio para exhibir colecciones de pintura, escultura, fotografía y arte contemporáneo con contacto directo para coleccionistas.
+            </p>
+          </div>
+          <div>
+            <ul class="space-y-2.5 text-xs text-brand-textMuted border-t border-brand-cardBorder pt-4 mb-6">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Portafolio optimizado en alta resolución</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Emisión de certificados de autenticidad</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center text-sm font-semibold text-brand-accent hover:text-brand-accentHover gap-1 group-hover:translate-x-1 transition-all">
+              <span>Explorar artistas</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Exhibición y Galerías -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 card-hover relative group shadow-sm">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-bgAlt border border-brand-cardBorder flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="building-2" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">Espacios & Curaduría</span>
+            <h3 class="font-playfair text-2xl font-bold text-brand-textMain mt-2 mb-3">Galerías & Exhibición</h3>
+            <p class="text-brand-textMuted text-sm leading-relaxed mb-6">
+              Salas de exhibición digitales, ferias y venta directa. Facilitamos la relación y transacciones seguras entre galeristas, curadores independientes e instituciones culturales.
+            </p>
+          </div>
+          <div>
+            <ul class="space-y-2.5 text-xs text-brand-textMuted border-t border-brand-cardBorder pt-4 mb-6">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Catálogos digitales e híbridos</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Pasarela de pagos y consignación</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center text-sm font-semibold text-brand-accent hover:text-brand-accentHover gap-1 group-hover:translate-x-1 transition-all">
+              <span>Ver galerías asociadas</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Producción y Logística -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 card-hover relative group shadow-sm">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-bgAlt border border-brand-cardBorder flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="truck" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-semibold text-brand-accent uppercase tracking-wider">Servicios Especializados</span>
+            <h3 class="font-playfair text-2xl font-bold text-brand-textMain mt-2 mb-3">Producción & Logística Local</h3>
+            <p class="text-brand-textMuted text-sm leading-relaxed mb-6">
+              Red de proveedores verificados para enmarcado, conservación, fabricación de huacales de madera, empaque especializado y transporte asegurado en toda la República.
+            </p>
+          </div>
+          <div>
+            <ul class="space-y-2.5 text-xs text-brand-textMuted border-t border-brand-cardBorder pt-4 mb-6">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Cotización directa de empaque y embalaje</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-brand-accent"></i>
+                <span>Personal capacitado para montaje técnico</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center text-sm font-semibold text-brand-accent hover:text-brand-accentHover gap-1 group-hover:translate-x-1 transition-all">
+              <span>Solicitar servicio técnico</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 4. SECCIÓN EXPLORACIÓN RÁPIDA / FEED ==================== -->
+  <section id="explorar" class="py-16 bg-brand-bg border-t border-brand-cardBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <h2 class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">Descubrimiento Continuo</h2>
+          <p class="font-playfair text-3xl font-bold text-brand-textMain">Selección Destacada</p>
+        </div>
+        
+        <!-- Categorías de Filtrado Rápido -->
+        <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+          <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-accent text-white shadow-sm">Todos</button>
+          <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-bgAlt border border-brand-cardBorder text-brand-textMuted hover:text-brand-textMain transition-colors">Obras</button>
+          <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-bgAlt border border-brand-cardBorder text-brand-textMuted hover:text-brand-textMain transition-colors">Galerías Top</button>
+          <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-bgAlt border border-brand-cardBorder text-brand-textMuted hover:text-brand-textMain transition-colors">Proveedores Técnicos</button>
+        </div>
+      </div>
+
+      <!-- Tarjetas de Muestra del Mercado -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Item 1 -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-xl overflow-hidden hover:border-brand-accent transition-all group shadow-sm">
+          <div class="relative h-52 bg-stone-200 overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-amber-100 via-stone-300 to-orange-100 group-hover:scale-105 transition-transform duration-500"></div>
+            <span class="relative text-xs text-stone-600 italic font-serif">[Imagen de Pintura Óleo Contemporánea]</span>
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-textMain text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-sm">Obra Disponible</span>
+          </div>
+          <div class="p-4">
+            <span class="text-[11px] text-brand-accent font-medium">Sofía Morales • CDMX</span>
+            <h4 class="font-serif font-bold text-brand-textMain text-lg mt-0.5 group-hover:text-brand-accent transition-colors">Geometría del Silencio</h4>
+            <p class="text-xs text-brand-textMuted mt-1">Acrílico sobre lienzo • 120 x 150 cm</p>
+            <div class="mt-4 pt-3 border-t border-brand-cardBorder flex items-center justify-between">
+              <span class="text-sm font-semibold text-brand-textMain">$28,000 MXN</span>
+              <button class="text-xs bg-brand-bgAlt text-brand-textMain hover:bg-brand-accent hover:text-white px-3 py-1.5 rounded-lg font-medium transition-colors">Ver Detalles</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-xl overflow-hidden hover:border-brand-accent transition-all group shadow-sm">
+          <div class="relative h-52 bg-stone-200 overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-stone-300 via-amber-200 to-stone-200 group-hover:scale-105 transition-transform duration-500"></div>
+            <span class="relative text-xs text-stone-600 italic font-serif">[Imagen de Espacio Galería de Arte]</span>
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-textMain text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-sm">Galería Destacada</span>
+          </div>
+          <div class="p-4">
+            <span class="text-[11px] text-brand-accent font-medium">Oaxaca, México</span>
+            <h4 class="font-serif font-bold text-brand-textMain text-lg mt-0.5 group-hover:text-brand-accent transition-colors">Galería Sur Contemporáneo</h4>
+            <p class="text-xs text-brand-textMuted mt-1">Especializada en gráfica tradicional y escultura oaxaqueña.</p>
+            <div class="mt-4 pt-3 border-t border-brand-cardBorder flex items-center justify-between">
+              <span class="text-xs text-brand-textMuted">14 Artistas</span>
+              <button class="text-xs bg-brand-bgAlt text-brand-textMain hover:bg-brand-accent hover:text-white px-3 py-1.5 rounded-lg font-medium transition-colors">Visitar Galería</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-xl overflow-hidden hover:border-brand-accent transition-all group shadow-sm">
+          <div class="relative h-52 bg-stone-200 overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-amber-200 via-orange-100 to-stone-300 group-hover:scale-105 transition-transform duration-500"></div>
+            <span class="relative text-xs text-stone-600 italic font-serif">[Imagen de Embalaje Técnico y Huacales]</span>
+            <span class="absolute top-3 right-3 bg-brand-accent text-white text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-sm">Proveedor Verificado</span>
+          </div>
+          <div class="p-4">
+            <span class="text-[11px] text-brand-accent font-medium">Logística & Empaque</span>
+            <h4 class="font-serif font-bold text-brand-textMain text-lg mt-0.5 group-hover:text-brand-accent transition-colors">ArtFreight México</h4>
+            <p class="text-xs text-brand-textMuted mt-1">Fabricación de huacales de madera de pino con estándar internacional.</p>
+            <div class="mt-4 pt-3 border-t border-brand-cardBorder flex items-center justify-between">
+              <span class="text-xs text-brand-textMuted">Cobertura Nacional</span>
+              <button class="text-xs bg-brand-bgAlt text-brand-textMain hover:bg-brand-accent hover:text-white px-3 py-1.5 rounded-lg font-medium transition-colors">Cotizar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="bg-brand-card border border-brand-cardBorder rounded-xl overflow-hidden hover:border-brand-accent transition-all group shadow-sm">
+          <div class="relative h-52 bg-stone-200 overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-orange-200 via-stone-200 to-amber-100 group-hover:scale-105 transition-transform duration-500"></div>
+            <span class="relative text-xs text-stone-600 italic font-serif">[Imagen de Escultura Moderna]</span>
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-textMain text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-sm">Obra Disponible</span>
+          </div>
+          <div class="p-4">
+            <span class="text-[11px] text-brand-accent font-medium">Mateo Benítez • Guadalajara</span>
+            <h4 class="font-serif font-bold text-brand-textMain text-lg mt-0.5 group-hover:text-brand-accent transition-colors">Estructura Dinámica III</h4>
+            <p class="text-xs text-brand-textMuted mt-1">Bronce con pátina natural • Edición de 3</p>
+            <div class="mt-4 pt-3 border-t border-brand-cardBorder flex items-center justify-between">
+              <span class="text-sm font-semibold text-brand-textMain">$45,000 MXN</span>
+              <button class="text-xs bg-brand-bgAlt text-brand-textMain hover:bg-brand-accent hover:text-white px-3 py-1.5 rounded-lg font-medium transition-colors">Ver Detalles</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== 5. CALL TO ACTION (REGISTRO) ==================== -->
+  <section id="registro" class="py-20 relative overflow-hidden bg-brand-bgAlt border-t border-brand-cardBorder">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="font-playfair text-3xl sm:text-5xl font-bold text-brand-textMain leading-tight">
+        ¿Eres artista, galerista o proveedor de servicios de arte?
+      </h2>
+      <p class="mt-4 text-brand-textMuted text-base sm:text-lg max-w-2xl mx-auto font-light">
+        Forma parte de la red digital que está unificando y redefiniendo el mercado de las artes visuales en México.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#" class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-3.5 rounded-full font-medium shadow-md transition-all">
+          Crear Perfil Profesional
+        </a>
+        <a href="#" class="w-full sm:w-auto bg-brand-card hover:bg-white border border-brand-cardBorder text-brand-textMain px-8 py-3.5 rounded-full font-medium transition-all shadow-sm">
+          Agendar Demostración
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== 6. PIE DE PÁGINA (FOOTER) ==================== -->
+  <footer class="bg-brand-bg border-t border-brand-cardBorder py-12 text-sm text-brand-textMuted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Info Marca -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-brand-accent flex items-center justify-center font-bold text-white text-xs">MX</div>
+            <span class="font-serif text-xl font-bold text-brand-textMain">ArteMX</span>
+          </div>
+          <p class="text-xs leading-relaxed text-brand-textMuted">
+            Plataforma digital para la integración del ecosistema de las artes visuales en México. Conectamos creadores, espacios de exhibición y producción técnica local.
+          </p>
+        </div>
+
+        <!-- Columna 1 -->
+        <div>
+          <h5 class="text-brand-textMain font-semibold text-xs uppercase tracking-wider mb-4">Comunidad</h5>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Artistas Visuales</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Galerías & Colectivos</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Curadores & Gestores</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Diseñadores</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 2 -->
+        <div>
+          <h5 class="text-brand-textMain font-semibold text-xs uppercase tracking-wider mb-4">Servicios Técnicos</h5>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Empaque y Huacales</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Transporte Especializado</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Montaje & Museografía</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Seguros de Obra</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3 -->
+        <div>
+          <h5 class="text-brand-textMain font-semibold text-xs uppercase tracking-wider mb-4">Contacto & Soporte</h5>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Centro de Ayuda</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Términos y Condiciones</a></li>
+            <li><a href="#" class="hover:text-brand-accent transition-colors">Privacidad de Datos</a></li>
+            <li class="pt-2 text-brand-textMuted">contacto@artemx.org</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-brand-cardBorder flex flex-col sm:flex-row items-center justify-between text-xs text-brand-textMuted gap-4">
+        <p>© 2026 ArteMX. Todos los derechos reservados. Creado para la comunidad artística en México.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-brand-textMain transition-colors">Instagram</a>
+          <a href="#" class="hover:text-brand-textMain transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-brand-textMain transition-colors">X (Twitter)</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Inicialización de íconos Lucide -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
